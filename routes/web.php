@@ -126,23 +126,33 @@ Route::get('/approval/completion/dept/{serviceRequest}', function(\App\ServiceRe
 //request 
 Route::post('bem_request_approval_deny/{serviceRequest}', 'ApprovalController@bem_request_approval_deny')->name('bem_request_approval_deny');
 Route::post('bem_request_approval_approve/{serviceRequest}', 'ApprovalController@bem_request_approval_approve')->name('bem_request_approval_approve');
+
 Route::post('ehss_request_approval_deny/{serviceRequest}', 'ApprovalController@ehss_request_approval_deny')->name('ehss_request_approval_deny');
 Route::post('ehss_request_approval_approve/{serviceRequest}', 'ApprovalController@ehss_request_approval_approve')->name('ehss_request_approval_approve');
+
 Route::post('dept_request_approval_deny/{serviceRequest}', 'ApprovalController@dept_request_approval_deny')->name('dept_request_approval_deny');
 Route::post('dept_request_approval_approve/{serviceRequest}', 'ApprovalController@dept_request_approval_approve')->name('dept_request_approval_approve');
+
 Route::post('factory_request_approval_deny/{serviceRequest}', 'ApprovalController@factory_request_approval_deny')->name('factory_request_approval_deny');
 Route::post('factory_request_approval_approve/{serviceRequest}', 'ApprovalController@factory_request_approval_approve')->name('factory_request_approval_approve');
+
 Route::post('project_request_approval_deny/{serviceRequest}', 'ApprovalController@project_request_approval_deny')->name('project_request_approval_deny');
 Route::post('project_request_approval_approve/{serviceRequest}', 'ApprovalController@project_request_approval_approve')->name('project_request_approval_approve');
+
+
 //outsource
 Route::post('bem_outsource_approval_deny/{serviceRequest}', 'ApprovalController@bem_outsource_approval_deny')->name('bem_outsource_approval_deny');
 Route::post('bem_outsource_approval_approve/{serviceRequest}', 'ApprovalController@bem_outsource_approval_approve')->name('bem_outsource_approval_approve');
+
 Route::post('factory_outsource_approval_deny/{serviceRequest}', 'ApprovalController@factory_outsource_approval_deny')->name('factory_outsource_approval_deny');
 Route::post('factory_outsource_approval_approve/{serviceRequest}', 'ApprovalController@factory_outsource_approval_approve')->name('factory_outsource_approval_approve');
+
 Route::post('project_outsource_approval_deny/{serviceRequest}', 'ApprovalController@project_outsource_approval_deny')->name('project_outsource_approval_deny');
 Route::post('project_outsource_approval_approve/{serviceRequest}', 'ApprovalController@project_outsource_approval_approve')->name('project_outsource_approval_approve');
+
 Route::post('regional_outsource_approval_deny/{serviceRequest}', 'ApprovalController@regional_outsource_approval_deny')->name('regional_outsource_approval_deny');
 Route::post('regional_outsource_approval_approve/{serviceRequest}', 'ApprovalController@regional_outsource_approval_approve')->name('regional_outsource_approval_approve');
+
 //completions
 Route::post('bem_completion_approval_deny/{serviceRequest}', 'ApprovalController@bem_completion_approval_deny')->name('bem_completion_approval_deny');
 Route::post('bem_completion_approval_approve/{serviceRequest}', 'ApprovalController@bem_completion_approval_approve')->name('bem_completion_approval_approve');
