@@ -20,26 +20,9 @@ use App\ServiceRequest;
 
 class MailSendingHelper
 {
-    public static function sendOutsourceApproval(User $user,ServiceRequest $service_request)
+    public static function sendRequestApproval(ServiceRequest $service_request)
     {
-        Mail::to($user->email)->send(new OutsourceApproval($user,$service_request));
-    }
-
-    public static function sendOutsourceApproved(User $user,ServiceRequest $service_request)
-    {
-        Mail::to($user->email)->send(new OutsourceApproved($user,$service_request));
-    }
-
-    public static function sendOutsourceDenied(User $user,ServiceRequest $service_request)
-    {
-        Mail::to($user->email)->send(new OutsourceDenied($user,$service_request));
-    }
-
-
-
-    public static function sendRequestApproval(User $user,ServiceRequest $service_request)
-    {
-        Mail::to($user->email)->send(new RequestApproval($user,$service_request));
+        Mail::to('--- email here')->send(new RequestApproval($service_request));
     }
 
     public static function sendRequestApproved(User $user,ServiceRequest $service_request)
@@ -54,9 +37,25 @@ class MailSendingHelper
 
 
 
-    public static function sendCompletionsApproval(User $user,ServiceRequest $service_request)
+    public static function sendOutsourceApproval(ServiceRequest $service_request)
     {
-        Mail::to($user->email)->send(new CompletionsApproval($user,$service_request));
+        Mail::to('---- email here')->send(new OutsourceApproval($service_request));
+    }
+
+    public static function sendOutsourceApproved(User $user,ServiceRequest $service_request)
+    {
+        Mail::to($user->email)->send(new OutsourceApproved($user,$service_request));
+    }
+
+    public static function sendOutsourceDenied(User $user,ServiceRequest $service_request)
+    {
+        Mail::to($user->email)->send(new OutsourceDenied($user,$service_request));
+    }
+
+
+    public static function sendCompletionsApproval(ServiceRequest $service_request)
+    {
+        Mail::to('--- email here')->send(new CompletionsApproval($service_request));
     }
 
     public static function sendCompletionsApproved(User $user,ServiceRequest $service_request)
