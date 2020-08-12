@@ -70,55 +70,106 @@ Route::post('update_user/{user}', 'UserController@update')->name('update_user');
 
 
 
-//request
-Route::get('/approval/request/bem/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
-{   
-    return view('approval.request.bem', ['service' => $serviceRequest]); 
-});
-Route::get('/approval/request/ehss/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
-{   
-    return view('approval.request.ehss', ['service' => $serviceRequest]); 
-});
-Route::get('/approval/request/dept/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
-{   
-    return view('approval.request.dept', ['service' => $serviceRequest]); 
-});
-Route::get('/approval/request/factory/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
-{   
-    return view('approval.request.factory', ['service' => $serviceRequest]); 
-});
-Route::get('/approval/request/project/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
-{   
-    return view('approval.request.project', ['service' => $serviceRequest]); 
+/**
+ * Approval expiring links
+ */
+Route::prefix('approval')->name('approval')->middleware('signed')->group(function(){
+
+
+    /**
+     * Request approval links
+     */
+    Route::prefix('request')->name('.request')->group(function(){
+
+        Route::get('bem/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
+        {   
+            return view('approval.request.bem', ['service' => $serviceRequest]); 
+
+        })->name('.bem');
+
+        Route::get('ehss/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
+        {   
+            return view('approval.request.ehss', ['service' => $serviceRequest]); 
+
+        })->name('.ehss');
+
+        Route::get('dept/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
+        {   
+            return view('approval.request.dept', ['service' => $serviceRequest]); 
+
+        })->name('.dept');
+
+        Route::get('factory/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
+        {   
+            return view('approval.request.factory', ['service' => $serviceRequest]); 
+
+        })->name('.factory');
+
+        Route::get('project/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
+        {   
+            return view('approval.request.project', ['service' => $serviceRequest]); 
+
+        })->name('.project');
+
+    });
+
+
+    /**
+     * Outsource approval links
+     */
+    Route::prefix('outsource')->name('.outsource')->group(function(){
+
+        Route::get('bem/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
+        {   
+            return view('approval.outsource.bem', ['service' => $serviceRequest]); 
+
+        })->name('.bem');
+
+        Route::get('factory/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
+        {   
+            return view('approval.outsource.factory', ['service' => $serviceRequest]); 
+
+        })->name('.factory');
+
+        Route::get('project/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
+        {   
+            return view('approval.outsource.project', ['service' => $serviceRequest]); 
+
+        })->name('.project');
+
+        Route::get('regional/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
+        {   
+            return view('approval.outsource.regional', ['service' => $serviceRequest]); 
+
+        })->name('.regional');
+
+    });
+    
+
+
+    /**
+     * Completion approval links
+     */
+    Route::prefix('completion')->name('.completion')->group(function(){
+
+        Route::get('bem/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
+        {   
+            return view('approval.completion.bem', ['service' => $serviceRequest]); 
+
+        })->name('.bem');
+
+        Route::get('dept/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
+        {   
+            return view('approval.completion.dept', ['service' => $serviceRequest]); 
+
+        })->name('.dept');
+
+    });
+
+
 });
 
-//outsource
-Route::get('/approval/outsource/bem/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
-{   
-    return view('approval.outsource.bem', ['service' => $serviceRequest]); 
-});
-Route::get('/approval/outsource/factory/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
-{   
-    return view('approval.outsource.factory', ['service' => $serviceRequest]); 
-});
-Route::get('/approval/outsource/project/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
-{   
-    return view('approval.outsource.project', ['service' => $serviceRequest]); 
-});
-Route::get('/approval/outsource/regional/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
-{   
-    return view('approval.outsource.regional', ['service' => $serviceRequest]); 
-});
 
-//completions
-Route::get('/approval/completion/bem/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
-{   
-    return view('approval.completion.bem', ['service' => $serviceRequest]); 
-});
-Route::get('/approval/completion/dept/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
-{   
-    return view('approval.completion.dept', ['service' => $serviceRequest]); 
-});
 
 
 
