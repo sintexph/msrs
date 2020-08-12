@@ -50,8 +50,12 @@ class Approval extends Model
 
     public function getHasAttachmentAttribute()
     {
-        return ($this->with_material == 1 ? true : false || $this->with_estimate == 1 ? true : false  || $this->with_design == 1 ? true : false  || $this->with_permit == 1 ? true : false
-              );
+        return (
+                ($this->with_material == 1 ? true : false) || 
+                ($this->with_estimate == 1 ? true : false)  || 
+                ($this->with_design == 1 ? true : false)  || 
+                ($this->with_permit == 1 ? true : false)
+            );
     }
 
     public function service_request()
@@ -92,7 +96,7 @@ class Approval extends Model
         $dept_approved = $this->dept_approved === 1 ? true : false;
         $factory_approved = $this->factory_approved === 1 ? true : false;
 
-        $project_approved = $this->project_approved_email == null ? true : $this->project_approved === 1 ? true : false;
+        $project_approved = $this->project_approved_email == null ? true : ($this->project_approved === 1 ? true : false);
 
         $is_approved = $this->service_request->status != 'Denied' ||  $this->service_request->status != 'Cancelled' ? true : false;
         

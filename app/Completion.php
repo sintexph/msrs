@@ -16,9 +16,11 @@ class Completion extends Model
         'bem_approved_at',
         'dept_approved',      
         'dept_approved_by',      
-        'dept_approved_at',      
+        'dept_approved_at', 
+             
         'bem_email',
         'dept_email',
+
         'report_number'
     ];
 }

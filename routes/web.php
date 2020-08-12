@@ -119,11 +119,11 @@ Route::prefix('approval')->name('approval')->middleware('signed')->group(functio
      */
     Route::prefix('outsource')->name('.outsource')->group(function(){
 
-        Route::get('bem/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
-        {   
-            return view('approval.outsource.bem', ['service' => $serviceRequest]); 
+        // Route::get('bem/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
+        // {   
+        //     return view('approval.outsource.bem', ['service' => $serviceRequest]); 
 
-        })->name('.bem');
+        // })->name('.bem');
 
         Route::get('factory/{serviceRequest}', function(\App\ServiceRequest $serviceRequest) 
         {   

@@ -8,7 +8,9 @@
 
         <hr>
 
-        Click on the link to continue
+
+        <p><a href="{{ $url }}">{{ $url }}</a></p>
+        <small>This approval link is valid only for 30 days</small>
     @endslot 
 
 

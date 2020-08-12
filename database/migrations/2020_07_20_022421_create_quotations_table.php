@@ -18,9 +18,11 @@ class CreateQuotationsTable extends Migration
             $table->integer('id_request');
             $table->integer('with_quotation')->nullable();
             $table->string('contractor')->nullable();
+            
             $table->integer('bem_approved')->nullable();
             $table->string('bem_approved_by')->nullable();
             $table->date('bem_approved_at')->nullable();
+
             $table->integer('factory_approved')->nullable();
             $table->string('factory_approved_by')->nullable();
             $table->date('factory_approved_at')->nullable();
@@ -30,8 +32,10 @@ class CreateQuotationsTable extends Migration
             $table->integer('need_regional_approval')->nullable();
             $table->integer('regional_approved')->nullable();
             $table->string('regional_approved_by')->nullable();
-            $table->date('regional_approved_at')->nullable();            
-            $table->string('bem_email')->nullable();
+            $table->date('regional_approved_at')->nullable();  
+
+            // $table->string('bem_email')->nullable();
+
             $table->string('factory_email')->nullable();
             $table->string('project_email')->nullable();
             $table->string('regional_email')->nullable();

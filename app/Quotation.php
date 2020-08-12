@@ -23,7 +23,7 @@ class Quotation extends Model
         'regional_approved',
         'regional_approval_by',
         'regional_approval_at',
-        'bem_email',
+        // 'bem_email',
         'factory_email',
         'project_email',
         'regional_email',

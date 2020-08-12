@@ -14,6 +14,7 @@ use App\Mail\Completions\ApprovedMailable as CompletionsApproved;
 use App\Mail\Completions\ApprovalMailable as CompletionsApproval;
 use App\Mail\Completions\DeniedMailable as CompletionsDenied;
 
+use URL;
 use Mail;
 use App\User;
 use App\ServiceRequest;
@@ -24,122 +25,135 @@ class MailSendingHelper
     /**
      * Completion approval 
      */
-    public static function approval_completion_bem(){
+    public static function approval_completion_bem(ServiceRequest $service_request){
         
-        $url=URL::signedRoute('approval.completion.bem', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
+        $url=URL::temporarySignedRoute('approval.completion.bem', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
+        Mail::to($service_request->completion->bem_email)
+        ->send(new CompletionsApproval($service_request,null,$url,$service_request->completion->bem_approved_by));
         
-        Mail::to('--- email here')->send(new CompletionsApproval($service_request,null,$url));
-
     }
 
-    public static function approval_completion_dept(){
+    public static function approval_completion_dept(ServiceRequest $service_request){
         
-        $url=URL::signedRoute('approval.completion.dept', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
-        Mail::to('--- email here')->send(new CompletionsApproval($service_request,null,$url));
+        $url=URL::temporarySignedRoute('approval.completion.dept', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
 
+        Mail::to($service_request->completion->dept_email)
+        ->send(new CompletionsApproval($service_request,null,$url,$service_request->completion->dept_approved_by));
     }
 
 
     /**
      * Outsource approval 
      */
-    public static function approval_outsource_bem(){
+    // public static function approval_outsource_bem(ServiceRequest $service_request){
         
-        $url=URL::signedRoute('approval.outsource.bem', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
-        Mail::to('---- email here')->send(new OutsourceApproval($service_request,null,$url));
+    //     $url=URL::temporarySignedRoute('approval.outsource.bem', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
+
+    //     Mail::to($service_request->quotation->bem_email)
+    //     ->send(new OutsourceApproval($service_request,null,$url,$service_request->quotation->bem_approved_by));
+
+    // }
+
+    public static function approval_outsource_factory(ServiceRequest $service_request){
+
+        $url=URL::temporarySignedRoute('approval.outsource.factory', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
+
+        Mail::to($service_request->quotation->factory_email)
+        ->send(new OutsourceApproval($service_request,null,$url,$service_request->quotation->factory_approved_by));
 
     }
 
-    public static function approval_outsource_factory(){
+    public static function approval_outsource_project(ServiceRequest $service_request){
 
-        $url=URL::signedRoute('approval.outsource.factory', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
-        Mail::to('---- email here')->send(new OutsourceApproval($service_request,null,$url));
+        $url=URL::temporarySignedRoute('approval.outsource.project', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
 
-    }
-
-    public static function approval_outsource_project(){
-        
-        $url=URL::signedRoute('approval.outsource.project', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
-        Mail::to('---- email here')->send(new OutsourceApproval($service_request,null,$url));
+        Mail::to($service_request->quotation->project_email)
+        ->send(new OutsourceApproval($service_request,null,$url,$service_request->quotation->project_approved_by));
 
     }
 
-    public static function approval_outsource_regional(){
+    public static function approval_outsource_regional(ServiceRequest $service_request){
         
-        $url=URL::signedRoute('approval.outsource.regional', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
-        Mail::to('---- email here')->send(new OutsourceApproval($service_request,null,$url));
+        $url=URL::temporarySignedRoute('approval.outsource.regional', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
 
+        Mail::to($service_request->quotation->regional_email)
+        ->send(new OutsourceApproval($service_request,null,$url,$service_request->quotation->regional_approved_by));
     }
 
 
     /**
-     * Request approval 
+     * Request approval
      */
-    public static function approval_request_bem(){
+    public static function approval_request_bem(ServiceRequest $service_request){
         
-        $url=URL::signedRoute('approval.request.bem', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
-        Mail::to('--- email here')->send(new RequestApproval($service_request,null,$url));
+        $url=URL::temporarySignedRoute('approval.request.bem', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
+
+        Mail::to($service_request->approval->bem_email)
+            ->send(new RequestApproval($service_request,null,$url,$service_request->approval->bem_approved_by));
+    }
+
+    public static function approval_request_dept(ServiceRequest $service_request){
+        
+        $url=URL::temporarySignedRoute('approval.request.dept', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
+
+        Mail::to($service_request->approval->dept_email)
+        ->send(new RequestApproval($service_request,null,$url,$service_request->approval->dept_approved_by));
 
     }
 
-    public static function approval_request_dept(){
+    public static function approval_request_ehss(ServiceRequest $service_request){
         
-        $url=URL::signedRoute('approval.request.dept', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
-        Mail::to('--- email here')->send(new RequestApproval($service_request,null,$url));
+        $url=URL::temporarySignedRoute('approval.request.ehss', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
+
+        Mail::to($service_request->approval->ehss_email)
+        ->send(new RequestApproval($service_request,null,$url,$service_request->approval->ehss_approved_by));
 
     }
 
-    public static function approval_request_ehss(){
+    public static function approval_request_factory(ServiceRequest $service_request){
         
-        $url=URL::signedRoute('approval.request.ehss', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
-        Mail::to('--- email here')->send(new RequestApproval($service_request,null,$url));
+        $url=URL::temporarySignedRoute('approval.request.factory', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
+
+        Mail::to($service_request->approval->factory_email)
+        ->send(new RequestApproval($service_request,null,$url,$service_request->approval->factory_approved_by));
 
     }
 
-    public static function approval_request_factory(){
+    public static function approval_request_project(ServiceRequest $service_request){
         
-        $url=URL::signedRoute('approval.request.factory', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
-        Mail::to('--- email here')->send(new RequestApproval($service_request,null,$url));
+        $url=URL::temporarySignedRoute('approval.request.project', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
 
-    }
-
-    public static function approval_request_project(){
-        
-        $url=URL::signedRoute('approval.request.project', now()->addDays(30) , ['serviceRequest' => $service_request->id]);
-        Mail::to('--- email here')->send(new RequestApproval($service_request,null,$url));
-
+        Mail::to($service_request->approval->project_email)
+        ->send(new RequestApproval($service_request,null,$url,$service_request->approval->project_approved_by));
     }
 
 
- 
-
-    private static function sendRequestApproved(User $user,ServiceRequest $service_request)
+    public static function sendRequestApproved(User $user,ServiceRequest $service_request)
     {
         Mail::to($user->email)->send(new RequestApproved($service_request,$user));
     }
 
-    private static function sendRequestDenied(User $user,ServiceRequest $service_request)
+    public static function sendRequestDenied(User $user,ServiceRequest $service_request)
     {
         Mail::to($user->email)->send(new RequestDenied($service_request,$user));
     }
 
-    private static function sendOutsourceApproved(User $user,ServiceRequest $service_request)
+    public static function sendOutsourceApproved(User $user,ServiceRequest $service_request)
     {
         Mail::to($user->email)->send(new OutsourceApproved($service_request,$user));
     }
 
-    private static function sendOutsourceDenied(User $user,ServiceRequest $service_request)
+    public static function sendOutsourceDenied(User $user,ServiceRequest $service_request)
     {
         Mail::to($user->email)->send(new OutsourceDenied($service_request,$user));
     }
 
-
-    private static function sendCompletionsApproved(User $user,ServiceRequest $service_request)
+    public static function sendCompletionsApproved(User $user,ServiceRequest $service_request)
     {
         Mail::to($user->email)->send(new CompletionsApproved($service_request,$user));
     }
 
-    private static function sendCompletionsDenied(User $user,ServiceRequest $service_request)
+    public static function sendCompletionsDenied(User $user,ServiceRequest $service_request)
     {
         Mail::to($user->email)->send(new CompletionsDenied($service_request,$user));
     }

@@ -12,10 +12,11 @@ trait ServiceRequestTrait
     public $receiver;
     public $url;
 
-    public function __construct(ServiceRequest $service_request,User $user=null,$url=null)
+    public function __construct(ServiceRequest $service_request,User $user=null,$url=null,$receiver=null)
     {
         $this->user=$user;
         $this->service_request=$service_request;
+        $this->receiver=$receiver;
         $this->url=$url;
     }
 }
