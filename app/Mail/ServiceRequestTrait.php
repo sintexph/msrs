@@ -9,6 +9,7 @@ trait ServiceRequestTrait
 {
     public $user;
     public $service_request;
+    public $receiver;
 
     public function __construct(ServiceRequest $service_request,User $user=null)
     {

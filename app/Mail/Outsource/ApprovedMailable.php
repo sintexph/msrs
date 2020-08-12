@@ -20,6 +20,9 @@ class ApprovedMailable extends Mailable
      */
     public function build()
     {
+        $this->receiver=""; # Receiver name
+        $this->subject="";
+
         return $this->view('mail.outsource.approved');
     }
 }
