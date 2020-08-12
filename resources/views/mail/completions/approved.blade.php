@@ -4,7 +4,8 @@
         Hello {{ $receiver }} 
         <br>  
         <br>        
-        This is to inform you that you have a pending Service Request for Approval.
+
+        -------APPROVED MESSAGE HERE AND REQUEST INFO------
 
         <hr>
 

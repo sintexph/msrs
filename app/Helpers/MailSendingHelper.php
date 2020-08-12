@@ -20,6 +20,9 @@ use App\ServiceRequest;
 
 class MailSendingHelper
 {
+    
+    
+
     public static function sendRequestApproval(ServiceRequest $service_request)
     {
         Mail::to('--- email here')->send(new RequestApproval($service_request));
@@ -34,8 +37,6 @@ class MailSendingHelper
     {
         Mail::to($user->email)->send(new RequestDenied($user,$service_request));
     }
-
-
 
     public static function sendOutsourceApproval(ServiceRequest $service_request)
     {

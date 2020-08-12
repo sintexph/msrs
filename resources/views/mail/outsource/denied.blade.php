@@ -3,8 +3,9 @@
     @slot('content')
         Hello {{ $receiver }} 
         <br>  
-        <br>        
-        This is to inform you that you have a pending Service Request for Approval.
+        <br>    
+            
+        -------DENIED MESSAGE HERE AND REQUEST INFO------
 
         <hr>
 
