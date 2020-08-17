@@ -23,6 +23,12 @@ class ApprovalMailable extends Mailable
         
         $this->subject="";
 
+        /**
+         * Can modify the receiver name here
+         */
+        //  $this->receiver=$this->user->name;
+        //  $this->receiver="some name";
+
         return $this->view('mail.outsource.approval');
     }
 }

@@ -21,6 +21,13 @@ class ApprovalMailable extends Mailable
     public function build()
     {
         $this->subject="";
+        
+        /**
+         * Can modify the receiver name here
+         */
+        //  $this->receiver=$this->user->name;
+        //  $this->receiver="some name";
+
 
         return $this->view('mail.request.approval');
     }
